@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Register | Shirt & Pant Store</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .register-box {
+            background: #fff;
+            padding: 30px;
+            width: 350px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .register-box h2 {
+            margin-bottom: 20px;
+        }
+
+        .register-box input {
+            width: 95%;
+            padding: 10px;
+            margin: 8px 0;
+        }
+
+        .register-box button {
+            width: 100%;
+            padding: 10px;
+            background: #ff7e5f;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .register-box button:hover {
+            background: #e96b4f;
+        }
+
+        .message {
+            margin-top: 15px;
+            color: green;
+            font-weight: bold;
+        }
+
+        .note {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+
+    <script>
+        function validateForm() {
+            let fullname = document.getElementById("fullname").value;
+            let email = document.getElementById("email").value;
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+            let confirm = document.getElementById("confirm").value;
+
+            if (fullname === "" || email === "" || username === "" || password === "") {
+                alert("All fields are required!");
+                return false;
+            }
+
+            if (password.length < 5) {
+                alert("Password must be at least 5 characters");
+                return false;
+            }
+
+            if (password !== confirm) {
+                alert("Passwords do not match!");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+</head>
+<body>
+
+<div class="register-box">
+    <h2>Create Account 🛍️</h2>
+
+    <form method="POST" onsubmit="return validateForm()">
+        <input type="text" name="fullname" id="fullname" placeholder="Full Name">
+        <input type="email" name="email" id="email" placeholder="Email">
+        <input type="text" name="username" id="username" placeholder="Username">
+        <input type="password" name="password" id="password" placeholder="Password">
+        <input type="password" id="confirm" placeholder="Confirm Password">
+        <button type="submit">Register</button>
+    </form>
+
+  
+    <p class="note">Already have an account? <a href="login.php">Login</a></p>
+</div>
+
+</body>
+</html>
