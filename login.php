@@ -1,26 +1,37 @@
 <?php
-session_start();
-
+include "db.php";
 $error_message = "";
 
-// Check if form is submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_POST['submit'])) {
 
-    $correct_username = "admin";
-    $correct_password = "12345";
+    $email = $_POST['username'];
+    $password = $_POST['password'];
 
-    $username = $_POST['username'] ?? '';
-    $password = $_POST['password'] ?? '';
+    $sql = "SELECT * FROM users WHERE email = '$email'";
+    $result = mysqli_query($conn, $sql);
 
-    if ($username === $correct_username && $password === $correct_password) {
-        $_SESSION['username'] = $username;
-        header("Location: home.html"); // redirect on success
-        exit();
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+
+        if ($row['password'] == $password) {
+            $_SESSION['user_id'] = $row['id'];
+            $_SESSION['user_name'] = $row['name'];
+            $_SESSION['user_role'] = $row['role'];
+            if($_SESSION['user_role']=="admin"){
+                header("location: admin/seller.php");
+            }
+            else{
+                header("location: in.php");
+            }
+        } else {
+            $error_message = "Wrong password";
+        }
     } else {
-        $error_message = "Invalid username or password ❌";
+        $error_message = "User not found. Please register first.";
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -96,16 +107,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p class="error"><?php echo $error_message; ?></p>
             <?php } ?>
 
-            <form action="" method="POST">
-                <input type="text" name="username" placeholder="Username" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit">Login</button>
-            </form>
+        <form action="" method="POST" onsubmit="return validateForm()">
+            <input type="text" name="username" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" name="submit">Login</button>
+        </form>
+
 
             <p class="note">New user? <a href="register.php">Register here</a></p>
         </div>
     </div>
 </div>
+<script>
+function validateForm() {
+    let username = document.forms[0]["username"].value.trim();
+    let password = document.forms[0]["password"].value.trim();
+
+    // email pattern
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (username === "") {
+        alert("Email is required");
+        return false;
+    }
+
+    if (!emailPattern.test(username)) {
+        alert("Please enter a valid email address");
+        return false;
+    }
+
+    if (password === "") {
+        alert("Password is required");
+        return false;
+    }
+
+    if (password.length < 6) {
+        alert("Password must be at least 6 characters");
+        return false;
+    }
+
+    return true; // submit form
+}
+</script>
+
 
 </body>
 </html>
