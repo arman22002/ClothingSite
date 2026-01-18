@@ -194,7 +194,7 @@ th{
                     </td>
                     <td><?php echo $row['category_id'] ?></td>
                     <td><a class="update" href="#">update</a></td>
-                    <td><a class="delete" href="deleteproduct.php">delete</a></td>
+                    <td><a class="delete" href="deleteproduct.php?product_id=<?php echo $row['id'] ?>">delete</a></td>
                 </tr>
                 <?php }?>
             </tbody>

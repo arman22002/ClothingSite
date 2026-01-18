@@ -1,5 +1,6 @@
 <?php 
 session_start();
+include "../db.php";
 if(isset($_SESSION['user_id'])){
     if($_SESSION['user_role']=="admin"){
         if(isset($_GET['product_id'])){
