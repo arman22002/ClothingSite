@@ -89,8 +89,9 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
     <div class="dashboard_sidebar">
         <h2>SELLER Panel</h2>
         <ul>
+            <li><a href="seller.php">home</a></li>
             <li><a href="addProduct.php">Add Product</a></li>
-            <li><a href="#">View Orders</a></li>
+            <li><a href="displayproduct.php">View Product</a></li>
             <li><a href="#">Feedback</a></li>
             <li><a href="#">Promotion</a></li>
             <li><a href="../logout.php">Logout</a></li>
@@ -99,7 +100,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
 
     <!-- Main Content -->
     <div class="main_content">
-        <h1>Welcome, Admin 👋</h1>
+        <h1>Welcome, Dear Seller </h1>
         <p>Select an option from the sidebar to manage your store.</p>
     </div>
 

@@ -122,8 +122,9 @@ input[type=submit]:hover{
 <div class="dashboard_sidebar">
     <h2>SELLER Panel</h2>
     <ul>
+        <li><a href="seller.php">home</a></li>
         <li><a href="addProduct.php">Add Product</a></li>
-        <li><a href="#">View Orders</a></li>
+        <li><a href="displayproduct.php">View Products</a></li>
         <li><a href="#">Feedback</a></li>
         <li><a href="#">Promotion</a></li>
         <li><a href="../logout.php">Logout</a></li>
