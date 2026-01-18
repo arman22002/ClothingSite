@@ -38,7 +38,7 @@ $description = mysqli_real_escape_string($conn, $_POST['description']);
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Admin Dashboard</title>
+<title>seller Dashboard</title>
 
 <style>
 *{
@@ -120,7 +120,7 @@ input[type=submit]:hover{
 <body>
 
 <div class="dashboard_sidebar">
-    <h2>Admin Panel</h2>
+    <h2>SELLER Panel</h2>
     <ul>
         <li><a href="addProduct.php">Add Product</a></li>
         <li><a href="#">View Orders</a></li>
@@ -135,15 +135,15 @@ input[type=submit]:hover{
 <?php if(isset($success)) echo "<div class='msg success'>$success</div>"; ?>
 <?php if(isset($error)) echo "<div class='msg error'>$error</div>"; ?>
 
-<form method="post" enctype="multipart/form-data">
-    <input type="text" name="name" placeholder="Product Name" required>
-    <textarea name="description" placeholder="Product Description" required></textarea>
-    <input type="number" name="price" placeholder="Price" required>
-    <input type="number" name="stock" placeholder="Stock" required>
+<form method="post" enctype="multipart/form-data" id="productForm">
 
-    <input type="file" name="image" required>
+        <input type="text" name="name" id="name" placeholder="Product Name">
+        <textarea name="description" id="description" placeholder="Product Description"></textarea>
+        <input type="number" name="price" id="price" placeholder="Price">
+        <input type="number" name="stock" id="stock" placeholder="Stock">
+        <input type="file" name="image" id="image">
+        <select name="category_id" id="category_id">
 
-    <select name="category_id" required>
         <option value="">Select Category</option>
         <?php while($row = mysqli_fetch_assoc($result1)) { ?>
             <option value="<?= $row['id']; ?>">
@@ -156,5 +156,19 @@ input[type=submit]:hover{
 </form>
 
 </div>
+
+<script>
+document.getElementById("productForm").onsubmit = function () {
+
+    let inputs = document.querySelectorAll("#productForm input, #productForm textarea, #productForm select");
+    for (let i = 0; i < inputs.length; i++) {
+        if (inputs[i].value.trim() === "") {
+            alert("All fields are required");
+            return false;
+        }
+    }
+    return true;
+};
+</script>
 </body>
 </html>

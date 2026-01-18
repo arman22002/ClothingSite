@@ -14,7 +14,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>SELLER Dashboard</title>
 
     <style>
         * {
@@ -87,7 +87,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
 
     <!-- Sidebar -->
     <div class="dashboard_sidebar">
-        <h2>Admin Panel</h2>
+        <h2>SELLER Panel</h2>
         <ul>
             <li><a href="addProduct.php">Add Product</a></li>
             <li><a href="#">View Orders</a></li>

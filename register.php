@@ -8,7 +8,7 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
     $phone    = $_POST['phone'];
     $address  = $_POST['address'];
-    $role     = "customer";
+    $role     = "user";
 
     $check = "SELECT id FROM users WHERE email='$email'";
     $checkResult = mysqli_query($conn, $check);
@@ -110,13 +110,15 @@ if (isset($_POST['submit'])) {
         function validateForm() {
             let fullname = document.getElementById("fullname").value;
             let email = document.getElementById("email").value;
-            let username = document.getElementById("username").value;
+              let password = document.getElementById("password").value;
+            // let username = document.getElementById("username").value;
             let phone = document.getElementById("phone").value;
             let address = document.getElementById("address").value;
-            let password = document.getElementById("password").value;
+          
             let confirm = document.getElementById("confirm").value;
 
-            if (fullname === "" || email === "" || username === ""|| phone === "" || address === "" || password === "") {
+
+            if (fullname === "" || email === "" || password === ""|| phone === "" || address === "" ) {
                 alert("All fields are required!");
                 return false;
             }
@@ -147,7 +149,7 @@ if (isset($_POST['submit'])) {
     <form method="POST" onsubmit="return validateForm()">
         <input type="text" name="fullname" id="fullname" placeholder="Full Name">
         <input type="email" name="email" id="email" placeholder="Email">
-        <input type="text" name="username" id="username" placeholder="Username">
+        <!-- <input type="text" name="username" id="username" placeholder="Username"> -->
         <input type="text" name="phone" id="phone" placeholder="Enter Your Phone Number">
         <input type="text" name="address" id="address" placeholder="Enter Your Address">
         <input type="password" name="password" id="password" placeholder="Password">
